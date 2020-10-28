@@ -475,6 +475,14 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
      */
     public final Hudson.CloudList clouds = new Hudson.CloudList(this);
 
+    /**
+     *  Q3
+     */
+    public void updateAndTrim() {
+        updateComputerList();
+        trimLabels();
+    }
+
     public static class CloudList extends DescribableList<Cloud,Descriptor<Cloud>> {
         public CloudList(Jenkins h) {
             super(h);
