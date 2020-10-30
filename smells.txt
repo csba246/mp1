@@ -1,0 +1,6 @@
+1) The first code smell is duplicate code. This can be resolved by making one method with this code and call the method both times in order to improve readability and cohesion. 
+2) Refactored and committed.
+3) The updateAndTrim method probably belongs in the jenkins class since it only uses jenkins objects in the Nodes class.
+4) We could replace all 4 occurences of this code easily with a single for loop.
+5) Refactored and committed.
+6) I noticed 5 duplications of code in RunParameterDefinitionTest.java while looking in output.xml. Each of the testing methods initialized 5 variables, but only used one each. I removed all of the unused variables and code in each method and successfully ran the tests afterwards.
