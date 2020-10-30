@@ -124,7 +124,7 @@ public class RunParameterDefinitionTest {
 
         project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.NOT_BUILT)));
         FreeStyleBuild notBuiltBuild = project.scheduleBuild2(0).get();
-        
+
         project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.ABORTED)));
         FreeStyleBuild abortedBuild = project.scheduleBuild2(0).get();
 
@@ -145,16 +145,6 @@ public class RunParameterDefinitionTest {
     public void testCOMPLETEDFilter() throws Exception {
 
         FreeStyleProject project = j.createFreeStyleProject("project");
-        FreeStyleBuild successfulBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.UNSTABLE)));
-        FreeStyleBuild unstableBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.FAILURE)));
-        FreeStyleBuild failedBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.NOT_BUILT)));
-        FreeStyleBuild notBuiltBuild = project.scheduleBuild2(0).get();
         
         project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.ABORTED)));
         FreeStyleBuild abortedBuild = project.scheduleBuild2(0).get();
@@ -176,19 +166,9 @@ public class RunParameterDefinitionTest {
     public void testSUCCESSFULFilter() throws Exception {
 
         FreeStyleProject project = j.createFreeStyleProject("project");
-        FreeStyleBuild successfulBuild = project.scheduleBuild2(0).get();
 
         project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.UNSTABLE)));
         FreeStyleBuild unstableBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.FAILURE)));
-        FreeStyleBuild failedBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.NOT_BUILT)));
-        FreeStyleBuild notBuiltBuild = project.scheduleBuild2(0).get();
-        
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.ABORTED)));
-        FreeStyleBuild abortedBuild = project.scheduleBuild2(0).get();
 
         FreeStyleProject paramProject = j.createFreeStyleProject("paramProject");
         ParametersDefinitionProperty pdp = 
@@ -210,18 +190,6 @@ public class RunParameterDefinitionTest {
         FreeStyleProject project = j.createFreeStyleProject("project");
         FreeStyleBuild successfulBuild = project.scheduleBuild2(0).get();
 
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.UNSTABLE)));
-        FreeStyleBuild unstableBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.FAILURE)));
-        FreeStyleBuild failedBuild = project.scheduleBuild2(0).get();
-
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.NOT_BUILT)));
-        FreeStyleBuild notBuiltBuild = project.scheduleBuild2(0).get();
-        
-        project.getPublishersList().replaceBy(Collections.singleton(new ResultPublisher(Result.ABORTED)));
-        FreeStyleBuild abortedBuild = project.scheduleBuild2(0).get();
-
         FreeStyleProject paramProject = j.createFreeStyleProject("paramProject");
         ParametersDefinitionProperty pdp = 
                 new ParametersDefinitionProperty(new RunParameterDefinition("RUN", 
@@ -235,7 +203,7 @@ public class RunParameterDefinitionTest {
                      build.getEnvironment(new LogTaskListener(LOGGER, Level.INFO)).get("RUN_NUMBER"));
     }
     
-    
+
     @Test
     public void testLoadEnvironmentVariablesWhenRunParameterJobHasBeenDeleted() throws Exception {
 
